@@ -20,6 +20,7 @@ public class Propertie {
     private String adress;
     private String description;
     private Type type;
+    private Double price;
 
     @Override
     public String toString() {
