@@ -21,4 +21,14 @@ public class PropertieServiceImpl implements IPropertieService {
     public Propertie getPropertie(Long id) {
         return  iPropertieRepository.getOne(id);
     }
+
+    @Override
+    public void remove(Long id) {
+        try{
+            Propertie p=iPropertieRepository.getOne(id);
+        iPropertieRepository.delete(p);
+        }catch (Exception e){
+
+        }
+    }
 }

@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IPropertieRepository extends JpaRepository<Propertie, Long> {
         Propertie findOneById(Long id);
+
 }
