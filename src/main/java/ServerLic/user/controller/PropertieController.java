@@ -13,28 +13,27 @@ import java.util.List;
 @RestController
 @RequestMapping("/propertie")
 public class PropertieController {
-    private IPropertieRepository propertieRepository;
     private IPropertieService propertieService;
     @Autowired
-    public PropertieController(IPropertieRepository propertieRepository, IPropertieService propertieService) {
-        this.propertieRepository = propertieRepository;
+    public PropertieController( IPropertieService propertieService) {
         this.propertieService = propertieService;
     }
     @GetMapping("/all")
     public List<Propertie> getAllPropertie(){
-        return propertieRepository.findAll();
+        return propertieService.getAll();
     }
     @PostMapping("/savepropertie")
     public Propertie savePropertie(@RequestBody Propertie propertie) {
-        return  propertieRepository.save(propertie);
+        return propertieService.savePropertie(propertie);
+
     }
     @GetMapping("/get/{id}")
     public Propertie getPropertie(@PathVariable("id") Long id) {
-        return propertieRepository.getOne(id);
+        return  propertieService.getOneById(id);
     }
     @GetMapping("/get/fromUser/{id}")
     public List<Propertie> getAllPropertieOfUser(@PathVariable("id") String id){
-        List<Propertie> all=propertieRepository.findAll();
+        List<Propertie> all=propertieService.getAll();
 
         List<Propertie> good= new ArrayList();
         for(int i=0;i<all.size();i++){

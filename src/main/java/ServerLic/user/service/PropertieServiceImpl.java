@@ -5,6 +5,8 @@ import ServerLic.user.repository.IPropertieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PropertieServiceImpl implements IPropertieService {
     private IPropertieRepository iPropertieRepository;
@@ -12,8 +14,18 @@ public class PropertieServiceImpl implements IPropertieService {
     public PropertieServiceImpl(IPropertieRepository iPropertieRepository){
         this.iPropertieRepository=iPropertieRepository;
     }
+
     @Override
-   public  Propertie  savePropertie(Propertie p) {
+    public Propertie getOneById(Long id) {
+        return iPropertieRepository.getOne(id);
+    }
+
+    @Override
+    public List<Propertie> getAll(){
+        return iPropertieRepository.findAll();
+    }
+    @Override
+    public  Propertie  savePropertie(Propertie p) {
         return  iPropertieRepository.save(p);
     }
 
@@ -26,7 +38,7 @@ public class PropertieServiceImpl implements IPropertieService {
     public void remove(Long id) {
         try{
             Propertie p=iPropertieRepository.getOne(id);
-        iPropertieRepository.delete(p);
+            iPropertieRepository.delete(p);
         }catch (Exception e){
 
         }

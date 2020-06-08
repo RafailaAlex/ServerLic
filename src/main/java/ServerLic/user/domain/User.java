@@ -1,10 +1,8 @@
 package ServerLic.user.domain;
 
 import lombok.*;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
 @Entity
 @Getter
 @Setter
@@ -17,7 +15,6 @@ public class User {
     private String displayName;
     private String email;
     private String profilePicture;
-
     @Override
     public String toString() {
         return "User{" +

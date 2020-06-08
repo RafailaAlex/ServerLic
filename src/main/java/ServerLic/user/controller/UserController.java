@@ -11,20 +11,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    private final IUserRepository userRepository;
     private final IUserService userService;
-
     @Autowired
-    public UserController(IUserRepository userRepository, IUserService userService) {
-        this.userRepository = userRepository;
+    public UserController( IUserService userService) {
         this.userService = userService;
     }
-
     @GetMapping("/all")
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return userService.getAll();
     }
-
     @PostMapping("/saveuser")
     public User saveUser(@RequestBody  User user) {
         return userService.saveUser(user);
@@ -33,5 +28,4 @@ public class UserController {
     public User getUser(@PathVariable("id") String id) {
         return userService.getUser(id);
     }
-
 }
