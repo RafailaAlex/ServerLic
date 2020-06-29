@@ -25,23 +25,6 @@ public class PropertieController {
     @PostMapping("/savepropertie")
     public Propertie savePropertie(@RequestBody Propertie propertie) {
         return propertieService.savePropertie(propertie);
-
-    }
-    @GetMapping("/get/{id}")
-    public Propertie getPropertie(@PathVariable("id") Long id) {
-        return  propertieService.getOneById(id);
-    }
-    @GetMapping("/get/fromUser/{id}")
-    public List<Propertie> getAllPropertieOfUser(@PathVariable("id") String id){
-        List<Propertie> all=propertieService.getAll();
-
-        List<Propertie> good= new ArrayList();
-        for(int i=0;i<all.size();i++){
-            if(all.get(i).getUserId().equals(id)){
-                good.add(all.get(i));
-            }
-        }
-        return good;
     }
     @DeleteMapping("/delete/{id}")
     public  void removePropertie(@PathVariable("id") Long id){
@@ -51,4 +34,19 @@ public class PropertieController {
 
         }
     }
+    @GetMapping("/get/{id}")
+    public Propertie getPropertie(@PathVariable("id") Long id) {
+        return  propertieService.getOneById(id);
+    }
+    @GetMapping("/get/fromUser/{id}")
+    public List<Propertie> getAllPropertieOfUser(@PathVariable("id") String id){
+        List<Propertie> all=propertieService.getAll();
+        List<Propertie> good= new ArrayList();
+        for(int i=0;i<all.size();i++){
+            if(all.get(i).getUserId().equals(id)){
+                good.add(all.get(i));
+            } }
+        return good;
+    }
+
 }
